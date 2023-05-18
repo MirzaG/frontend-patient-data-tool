@@ -7,7 +7,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("Patient");
+  const [role, setRole] = useState("patient");
 
   useEffect(() => {
     const user = getUserDetails();
@@ -65,7 +65,7 @@ const LoginPage = () => {
     // Reset form fields
     setEmail("");
     setPassword("");
-    setRole("Patient");
+    setRole("patient");
   };
 
   return (
@@ -125,10 +125,10 @@ const LoginPage = () => {
             onChange={handleRoleChange}
             style={{ width: "95%", padding: "10px", fontSize: "16px" }}
           >
-            <option value="Admin">Admin</option>
-            <option value="Patient">Patient</option>
-            <option value="Staff">Staff</option>
-            <option value="Doctor">Doctor</option>
+            <option value="admin">Admin</option>
+            <option value="patient">Patient</option>
+            <option value="staff">Staff</option>
+            <option value="doctor">Doctor</option>
           </select>
         </div>
         <div style={{ textAlign: "center" }}>
