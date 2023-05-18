@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://backend-patient-data-tool.vercel.app/api";
+const API_BASE_URL =
+  (process.env.BACKEND_URL ||
+    "https://8080-cs-943a9424-8b82-4ed2-8589-c65d1d43742f.cs-asia-east1-vger.cloudshell.dev") +
+  "/api";
 
 export const getQuestions = async () => {
   try {
