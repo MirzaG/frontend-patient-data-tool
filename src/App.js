@@ -10,12 +10,14 @@ import Thanks from "./Components/Survey/Thanks";
 import Dashboard from "./Components/Dashboard";
 import Navbar from "./Components/Navbar";
 import LoginPage from "./Components/Login";
+import Logout from "./Components/Logout";
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
         <h1>Patient Data Collection Tool</h1>
+        <Logout />
       </div>
       <Routes>
         <Route path="/" element={<LoginPage />} />
