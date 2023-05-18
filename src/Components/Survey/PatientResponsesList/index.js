@@ -6,6 +6,7 @@ import styles from "./index.css";
 const PatientResponsesList = () => {
   const { userId } = useParams();
   const [responses, setResponses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchPatientResponses(userId);
@@ -13,10 +14,12 @@ const PatientResponsesList = () => {
 
   const fetchPatientResponses = async (userId) => {
     try {
+      setIsLoading(true);
       const {
         data: { rows },
       } = await getSurveyResponses(userId);
       setResponses(rows);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching responses:", error);
     }
@@ -62,7 +65,9 @@ const PatientResponsesList = () => {
       </h2>
       {
         <ol className="QuestionsContainer">
-          {responses.length === 0 && <p>No responses found.</p>}
+          {responses.length === 0 && (
+            <p>{isLoading ? "Loading..." : "No responses found."}</p>
+          )}
           {responses.map((response) => (
             <li key={response.id} className="Question">
               <p>
