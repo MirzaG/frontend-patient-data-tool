@@ -6,6 +6,7 @@ import styles from "./index.css";
 const QuestionsListForPatients = () => {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchQuestions();
@@ -13,6 +14,7 @@ const QuestionsListForPatients = () => {
 
   const fetchQuestions = async () => {
     try {
+      setIsLoading(true);
       const {
         data: { rows },
       } = await getQuestions();
@@ -23,6 +25,7 @@ const QuestionsListForPatients = () => {
         id: row.id,
       }));
       setQuestions(mappedResponse);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
@@ -58,7 +61,9 @@ const QuestionsListForPatients = () => {
       </h2>
       <form onSubmit={handleQuestionsSubmit} className="PatientQuestionsList">
         <ol className="QuestionsContainer">
-          {questions.length === 0 && <p>No questions found.</p>}
+          {questions?.length === 0 && (
+            <p>{isLoading ? "Loading..." : "No questions found."}</p>
+          )}
           {questions.map((question, index) => (
             <li key={question.id} className="QuestionForPatient">
               <p>{question.question_text}</p>
@@ -99,9 +104,11 @@ const QuestionsListForPatients = () => {
             </li>
           ))}
         </ol>
-        <div>
-          <input type="submit" value="Submit" className="submitResponseBtn" />
-        </div>
+        {questions?.length > 0 && (
+          <div>
+            <input type="submit" value="Submit" className="submitResponseBtn" />
+          </div>
+        )}
       </form>
     </>
   );
