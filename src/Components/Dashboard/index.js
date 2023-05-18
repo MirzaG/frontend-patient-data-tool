@@ -16,7 +16,7 @@ const Dashboard = () => {
     try {
       setIsLoading(true);
       const { data } = await getSurveyResponseUsers();
-      setResponseUsers([]);
+      setResponseUsers(data);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching responses:", error);
