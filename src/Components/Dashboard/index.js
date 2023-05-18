@@ -6,6 +6,7 @@ import { getSurveyResponseUsers } from "../../Api/Questions";
 
 const Dashboard = () => {
   const [responseUsers, setResponseUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchResponseUsers();
@@ -13,8 +14,10 @@ const Dashboard = () => {
 
   const fetchResponseUsers = async () => {
     try {
+      setIsLoading(true);
       const { data } = await getSurveyResponseUsers();
-      setResponseUsers(data);
+      setResponseUsers([]);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching responses:", error);
     }
@@ -23,39 +26,45 @@ const Dashboard = () => {
   return (
     <div className="UserSubmittedResponsesContainer">
       <h3>Submitted Responses - Users</h3>
-      <table className="PatientResponsesTable">
-        <thead>
-          <tr>
-            <td>
-              <b>Id</b>
-            </td>
-            <td>
-              <b>Name</b>
-            </td>
-            <td>
-              <b>Email</b>
-            </td>
-            <td>
-              <b>Phone</b>
-            </td>
-          </tr>
-        </thead>
-        {responseUsers?.length === 0 && <p>No submissions found.</p>}
-        <tbody>
-          {responseUsers?.map(({ User }) => (
+      {responseUsers?.length === 0 && (
+        <p style={{ marginLeft: "130px" }}>
+          {isLoading ? "Loading..." : "No submissions found."}
+        </p>
+      )}
+      {responseUsers?.length > 0 && (
+        <table className="PatientResponsesTable">
+          <thead>
             <tr>
-              <td>{User.id}</td>
               <td>
-                <NavLink to={`/patient/${User.id}/responses`}>
-                  {User.firstName} {User.lastName}
-                </NavLink>
+                <b>Id</b>
               </td>
-              <td>{User.email}</td>
-              <td>{User.phone ? User.phone : "N/A"}</td>
+              <td>
+                <b>Name</b>
+              </td>
+              <td>
+                <b>Email</b>
+              </td>
+              <td>
+                <b>Phone</b>
+              </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {responseUsers?.map(({ User }) => (
+              <tr>
+                <td>{User.id}</td>
+                <td>
+                  <NavLink to={`/patient/${User.id}/responses`}>
+                    {User.firstName} {User.lastName}
+                  </NavLink>
+                </td>
+                <td>{User.email}</td>
+                <td>{User.phone ? User.phone : "N/A"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
