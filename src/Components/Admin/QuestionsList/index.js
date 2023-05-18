@@ -8,6 +8,7 @@ const QuestionsList = () => {
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchQuestions();
@@ -15,6 +16,7 @@ const QuestionsList = () => {
 
   const fetchQuestions = async () => {
     try {
+      setIsLoading(true);
       const {
         data: { rows },
       } = await getQuestions();
@@ -25,6 +27,7 @@ const QuestionsList = () => {
         id: row.id,
       }));
       setQuestions(mappedResponse);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
@@ -60,7 +63,9 @@ const QuestionsList = () => {
         </button>
       </div>
       <ol className="QuestionsContainer">
-        {questions.length === 0 && <p>No questions found.</p>}
+        {questions.length === 0 && (
+          <p>{isLoading ? "Loading..." : "No questions found."}</p>
+        )}
         {questions.map((question, index) => (
           <li
             key={question.id}
