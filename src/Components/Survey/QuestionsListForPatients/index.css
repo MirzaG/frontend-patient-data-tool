@@ -1,0 +1,53 @@
+h2{
+  text-align: center;
+}
+
+.AddQuestionContainer{
+  text-align: left;
+}
+
+.AddQuestionButton {
+  margin-left: 60px;
+  padding: 12px;
+}
+
+.AddQuestionButton > span, .AddQuestionButton > svg {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.AddQuestionButton:hover{
+  cursor: pointer;
+}
+
+
+.QuestionsContainer{
+  text-align: left;
+  margin-left: 60px;
+  border-left: 10px solid lightgray;
+  max-width: 800px;
+}
+
+.Question, .QuestionForPatient {
+  border-bottom: 1px dashed gray;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.PatientQuestionsList .QuestionForPatient {
+  cursor: unset;
+}
+
+.PatientQuestionsList fieldset label {
+  font-weight: normal;
+}
+
+.submitResponseBtn {
+  padding: 5px 20px;
+  margin: 10px 20px;
+  margin-left: 20px;
+ font-size: 18px;
+ font-weight: bold;
+ margin-left: 115px;
+ cursor: pointer;
+}

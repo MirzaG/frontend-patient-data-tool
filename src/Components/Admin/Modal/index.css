@@ -1,0 +1,37 @@
+
+.closeModalIcon{
+    cursor: pointer;
+    text-align: right;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    color: gray;
+  }
+
+  form > div, .submitBtn, form button{
+    margin-top: 10px;
+  }
+
+  form .options-text{
+    margin-top: 5px;
+  }
+
+  form label {
+    padding-right: 15px;
+    vertical-align: middle;
+    font-weight: bold;
+  }
+  form textarea {
+    display: block;
+    width: 500px;
+    min-height: 100px;
+  }
+
+  .submitBtn{
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 15px;
+  }
