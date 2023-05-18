@@ -1,0 +1,15 @@
+.PatientResponsesTable td{
+    border-left: 1px solid black;
+    border-bottom: 1px solid gray;
+    padding: 20px;
+}
+
+.UserSubmittedResponsesContainer{
+    margin-left: 50px;
+    border-left: 5px solid lightgray;
+    padding-left: 20px;
+}
+.UserSubmittedResponsesContainer > h3{
+    margin-left: 95px;
+    text-decoration: underline;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import styles from "./index.css";
 
 import { getSurveyResponseUsers } from "../../Api/Questions";
 
@@ -20,18 +21,41 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className="UserSubmittedResponsesContainer">
       <h3>Submitted Responses - Users</h3>
-      <ul>
+      <table className="PatientResponsesTable">
+        <thead>
+          <tr>
+            <td>
+              <b>Id</b>
+            </td>
+            <td>
+              <b>Name</b>
+            </td>
+            <td>
+              <b>Email</b>
+            </td>
+            <td>
+              <b>Phone</b>
+            </td>
+          </tr>
+        </thead>
         {responseUsers?.length === 0 && <p>No submissions found.</p>}
-        {responseUsers?.map(({ User }) => (
-          <li>
-            <NavLink to={`/patient/${User.id}/responses`}>
-              {User.firstName} {User.lastName} ({User.email})
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        <tbody>
+          {responseUsers?.map(({ User }) => (
+            <tr>
+              <td>{User.id}</td>
+              <td>
+                <NavLink to={`/patient/${User.id}/responses`}>
+                  {User.firstName} {User.lastName}
+                </NavLink>
+              </td>
+              <td>{User.email}</td>
+              <td>{User.phone ? User.phone : "N/A"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
