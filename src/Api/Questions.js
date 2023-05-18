@@ -1,8 +1,30 @@
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 const API_BASE_URL =
   (process.env.BACKEND_URL ||
     "https://backend-patient-data-tool-lx2eaom2iq-uc.a.run.app") + "/api";
+
+const PUBLIC_BASE_URL =
+  (process.env.BACKEND_URL ||
+    "https://backend-patient-data-tool-lx2eaom2iq-uc.a.run.app") + "/pub";
+
+export const getUserDetails = () => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    // Decode the JWT token to get user details
+    const decodedToken = jwtDecode(token);
+
+    // Extract user details from the decoded token
+    const {
+      user: { userId, email, role },
+    } = decodedToken;
+
+    return { id: userId, email, role };
+  }
+  return {};
+};
 
 export const getQuestions = async () => {
   try {
@@ -44,9 +66,9 @@ export const updateQuestion = async (formData) => {
 
 export const submitSurveyResponse = async (formData) => {
   try {
-    const LOGGED_IN_USER_ID = 3;
+    const user = getUserDetails();
     const response = await axios.post(
-      `${API_BASE_URL}/patient/${LOGGED_IN_USER_ID}/responses`,
+      `${API_BASE_URL}/patient/${user.id}/responses`,
       formData,
       {
         headers: {
@@ -61,11 +83,25 @@ export const submitSurveyResponse = async (formData) => {
   }
 };
 
+export const loginAPI = async (formData) => {
+  try {
+    const response = await axios.post(`${PUBLIC_BASE_URL}/login`, formData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error in login:", error);
+    throw new Error("Failed to login");
+  }
+};
+
 export const getSurveyResponses = async (userId) => {
   try {
-    const LOGGED_IN_USER_ID = 2; // need to be replaced with logged in user
+    const user = getUserDetails();
     const response = await axios.get(
-      `${API_BASE_URL}/patient/${userId || LOGGED_IN_USER_ID}/responses`
+      `${API_BASE_URL}/patient/${userId || user.id}/responses`
     );
     return response.data;
   } catch (error) {

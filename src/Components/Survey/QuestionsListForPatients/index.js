@@ -44,7 +44,7 @@ const QuestionsListForPatients = () => {
       responses: mappedFormResponse,
     });
     if (response.success === true) {
-      alert("Data submitted successfully!");
+      // alert("Data submitted successfully!");
       navigate("/thanks");
     } else {
       alert("There is some issue in form submission. Please try again later.");
