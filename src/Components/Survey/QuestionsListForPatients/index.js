@@ -39,7 +39,10 @@ const QuestionsListForPatients = () => {
         const questionId = +key.split("_").pop();
         return {
           questionId,
-          response: formResponse[key],
+          response:
+            typeof formResponse[key] !== "string"
+              ? undefined
+              : formResponse[key],
         };
       })
       .filter((obj) => !!obj.response);
