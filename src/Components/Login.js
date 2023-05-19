@@ -52,7 +52,7 @@ const LoginPage = () => {
         if (response.data.user.role === "patient") {
           navigate("/questions");
         } else if (response.data.user.role === "admin") {
-          navigate("/admin");
+          navigate("/main");
         } else if (response.data.user.role === "staff") {
           navigate("/dashboard");
         } else if (response.data.user.role === "doctor") {
