@@ -1,0 +1,12 @@
+.DashboardMainViewContainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0 20%;   
+    margin-top: 10%;
+}
+
+.DashboardMainViewContainer > div {
+    margin: auto;
+}

@@ -15,7 +15,7 @@ const LoginPage = () => {
       if (user?.role === "patient") {
         navigate("/questions");
       } else if (user?.role === "admin") {
-        navigate("/admin");
+        navigate("/main");
       } else if (user?.role === "staff") {
         navigate("/dashboard");
       } else if (user?.role === "doctor") {

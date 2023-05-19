@@ -11,6 +11,7 @@ import Dashboard from "./Components/Dashboard";
 import Navbar from "./Components/Navbar";
 import LoginPage from "./Components/Login";
 import Logout from "./Components/Logout";
+import DashboardMainView from "./Components/Dashboard/DashboardMainView/_index";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/questions" element={<QuestionsListForPatients />} />
         <Route path="/thanks" element={<Thanks />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/main" element={<DashboardMainView />} />
         <Route
           path="/patient/:userId/responses"
           element={<PatientResponsesList />}
