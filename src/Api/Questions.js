@@ -9,6 +9,7 @@ const PUBLIC_BASE_URL =
   (process.env.BACKEND_URL ||
     "https://backend-patient-data-tool-lx2eaom2iq-uc.a.run.app") + "/pub";
 
+axios.defaults.headers.common["x-token"] = localStorage.getItem("token");
 export const getUserDetails = () => {
   const token = localStorage.getItem("token");
 
@@ -119,5 +120,14 @@ export const getSurveyResponseUsers = async (userId) => {
   } catch (error) {
     console.error("Error in fetching users who responded:", error);
     throw new Error("Failed to fetch users who responded");
+  }
+};
+export const getMyProfile = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/me`);
+    return response.data;
+  } catch (error) {
+    console.error("Error in fetching user details:", error);
+    throw new Error("Failed to fetch user details");
   }
 };
