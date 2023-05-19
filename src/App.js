@@ -11,7 +11,7 @@ import Dashboard from "./Components/Dashboard";
 import Navbar from "./Components/Navbar";
 import LoginPage from "./Components/Login";
 import Logout from "./Components/Logout";
-import DashboardMainView from "./Components/Dashboard/DashboardMainView/_index";
+import DashboardMainView from "./Components/Dashboard/DashboardMainView";
 
 const App = () => {
   return (
