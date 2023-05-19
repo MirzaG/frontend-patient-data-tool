@@ -32,6 +32,10 @@ const QuestionsListForPatients = () => {
   };
   const handleQuestionsSubmit = async (e) => {
     e.preventDefault();
+    document
+      .getElementById("questionsSubmitBtn")
+      .setAttribute("disabled", true);
+    document.getElementById("questionsSubmitBtn").value = "Submitting...";
     const formData = new FormData(e.target);
     const formResponse = Object.fromEntries(formData);
     const mappedFormResponse = Object.keys(formResponse)
@@ -50,8 +54,10 @@ const QuestionsListForPatients = () => {
       responses: mappedFormResponse,
     });
     if (response.success === true) {
-      // alert("Data submitted successfully!");
-      navigate("/thanks");
+      alert("Data submitted successfully!");
+      document.getElementById("questionsSubmitBtn").removeAttribute("disabled");
+      document.getElementById("questionsSubmitBtn").value = "Submit";
+      navigate("/patient");
     } else {
       alert("There is some issue in form submission. Please try again later.");
     }
@@ -109,7 +115,12 @@ const QuestionsListForPatients = () => {
         </ol>
         {questions?.length > 0 && (
           <div>
-            <input type="submit" value="Submit" className="submitResponseBtn" />
+            <input
+              id="questionsSubmitBtn"
+              type="submit"
+              value="Submit"
+              className="submitResponseBtn"
+            />
           </div>
         )}
       </form>
