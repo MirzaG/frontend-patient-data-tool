@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { getSurveyResponses } from "../../../Api/Questions";
+import { getSurveyResponses, getUserDetails } from "../../../Api/Questions";
 import { useParams } from "react-router-dom";
 import styles from "./index.css";
 
-const PatientResponsesList = () => {
+const PatientResponsesList = ({ useLoggedInUser = false }) => {
   const { userId } = useParams();
   const [responses, setResponses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchPatientResponses(userId);
+    let loggedInUserId = null;
+    if (useLoggedInUser) {
+      const user = getUserDetails();
+      loggedInUserId = user?.id;
+    }
+    fetchPatientResponses(useLoggedInUser ? loggedInUserId : userId);
   }, []);
 
   const fetchPatientResponses = async (userId) => {
@@ -59,8 +64,13 @@ const PatientResponsesList = () => {
     <>
       <h2>
         <u>
-          Patient Responses({responses[0]?.User.firstName}{" "}
-          {responses[0]?.User.lastName})[{responses[0]?.createdAt}]
+          Patient Responses
+          {responses[0]?.User.id && (
+            <>
+              ({responses[0]?.User.firstName} {responses[0]?.User.lastName}) [
+              {responses[0]?.createdAt}]
+            </>
+          )}
         </u>
       </h2>
       {

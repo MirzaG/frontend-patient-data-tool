@@ -12,6 +12,8 @@ import Navbar from "./Components/Navbar";
 import LoginPage from "./Components/Login";
 import Logout from "./Components/Logout";
 import DashboardMainView from "./Components/Dashboard/DashboardMainView";
+import PatientPage from "./Components/Patient";
+import UserProfile from "./Components/Patient/profile";
 
 const App = () => {
   return (
@@ -28,6 +30,8 @@ const App = () => {
         <Route path="/thanks" element={<Thanks />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/main" element={<DashboardMainView />} />
+        <Route path="/patient" element={<PatientPage />} />
+        <Route path="/profile" element={<UserProfile />} />
         <Route
           path="/patient/:userId/responses"
           element={<PatientResponsesList />}

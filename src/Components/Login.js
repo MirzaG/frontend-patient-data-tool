@@ -13,7 +13,7 @@ const LoginPage = () => {
     const user = getUserDetails();
     if (user?.id) {
       if (user?.role === "patient") {
-        navigate("/questions");
+        navigate("/patient");
       } else if (user?.role === "admin") {
         navigate("/main");
       } else if (user?.role === "staff") {
@@ -50,7 +50,7 @@ const LoginPage = () => {
       if (response.success) {
         localStorage.setItem("token", response.data.token);
         if (response.data.user.role === "patient") {
-          navigate("/questions");
+          navigate("/patient");
         } else if (response.data.user.role === "admin") {
           navigate("/main");
         } else if (response.data.user.role === "staff") {

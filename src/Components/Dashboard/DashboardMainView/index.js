@@ -47,7 +47,7 @@ export default function DashboardMainView() {
               Questions
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Collection information from patients by dynamic questions
+              Collect information from patients with dynamic questions
             </Typography>
           </CardContent>
         </CardActionArea>
