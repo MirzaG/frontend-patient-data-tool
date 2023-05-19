@@ -40,7 +40,10 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
+    const loginBtn = document.getElementById("loginBtn");
+    loginBtn.setAttribute("disabled", true);
+    loginBtn.innerText = "Logging In..";
+    document.getElementById("errorMsg").innerText = "";
     try {
       const response = await loginAPI({ email, password, role });
       // Save JWT token in local storage
@@ -60,7 +63,11 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Unable to Login. Incorrect Email/Password.");
+      // alert("Unable to Login. Incorrect Email/Password.");
+      document.getElementById("errorMsg").innerText =
+        "Unable to Login.\n Incorrect Email, Password or Role.";
+      loginBtn.removeAttribute("disabled");
+      loginBtn.innerText = "Login";
     }
     // Reset form fields
     setEmail("");
@@ -131,8 +138,12 @@ const LoginPage = () => {
             <option value="doctor">Doctor</option>
           </select>
         </div>
+        <div>
+          <span id="errorMsg" style={{ color: "white" }}></span>
+        </div>
         <div style={{ textAlign: "center" }}>
           <button
+            id="loginBtn"
             type="submit"
             style={{
               background: "white",
