@@ -14,6 +14,7 @@ import Logout from "./Components/Logout";
 import DashboardMainView from "./Components/Dashboard/DashboardMainView";
 import PatientPage from "./Components/Patient";
 import UserProfile from "./Components/Patient/profile";
+import TemplatesList from "./Components/Admin/TemplatesList";
 
 const App = () => {
   return (
@@ -26,7 +27,12 @@ const App = () => {
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/admin" element={<QuestionsList />} />
+        <Route path="/templates" element={<TemplatesList />} />
         <Route path="/questions" element={<QuestionsListForPatients />} />
+        <Route
+          path="/template/:templateId/questions"
+          element={<QuestionsList />}
+        />
         <Route path="/thanks" element={<Thanks />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/main" element={<DashboardMainView />} />

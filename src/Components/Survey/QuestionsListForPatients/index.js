@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getQuestions, submitSurveyResponse } from "../../../Api/Questions";
 import styles from "./index.css";
 
 const QuestionsListForPatients = () => {
   const navigate = useNavigate();
+  const { templateId } = useParams();
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -17,7 +18,7 @@ const QuestionsListForPatients = () => {
       setIsLoading(true);
       const {
         data: { rows },
-      } = await getQuestions();
+      } = await getQuestions(templateId);
       const mappedResponse = rows.map((row) => ({
         question_text: row.text,
         question_type: row.type,

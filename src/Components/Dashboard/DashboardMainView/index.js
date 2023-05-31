@@ -44,7 +44,7 @@ export default function DashboardMainView() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Questions
+              Templates & Questions
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Collect information from patients with dynamic questions
@@ -53,7 +53,7 @@ export default function DashboardMainView() {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            <NavLink to="/admin">Visit Questions</NavLink>
+            <NavLink to="/templates">Visit Templates</NavLink>
           </Button>
         </CardActions>
       </Card>

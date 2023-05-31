@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import { BsPlus } from "react-icons/bs";
 import { getQuestions } from "../../../Api/Questions";
-import styles from "./index.css";
 import QuestionModal from "../Modal/QuestionModal";
+import styles from "./index.css";
 
 const QuestionsList = () => {
+  const { templateId } = useParams();
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -19,7 +21,7 @@ const QuestionsList = () => {
       setIsLoading(true);
       const {
         data: { rows },
-      } = await getQuestions();
+      } = await getQuestions(templateId);
       const mappedResponse = rows.map((row) => ({
         question_text: row.text,
         question_type: row.type,
@@ -90,6 +92,7 @@ const QuestionsList = () => {
           isModalOpen={modalIsOpen}
           onModalClose={closeModal}
           question={selectedQuestion}
+          templateId={templateId}
         />
       )}
     </>

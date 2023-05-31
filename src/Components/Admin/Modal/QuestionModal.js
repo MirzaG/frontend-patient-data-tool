@@ -22,6 +22,7 @@ const QuestionModal = ({
   isModalOpen = false,
   onModalClose: closeModalFn,
   question: selectedQuestion,
+  templateId,
 }) => {
   const [questionText, setQuestionText] = useState(
     selectedQuestion.question_text || ""
@@ -83,6 +84,7 @@ const QuestionModal = ({
     try {
       const formData = new FormData();
 
+      formData.append("templateId", templateId);
       formData.append("question_text", questionText);
       formData.append("question_type", questionType);
       formData.append("options", JSON.stringify(options));
