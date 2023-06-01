@@ -133,7 +133,7 @@ const LoginPage = () => {
             style={{ width: "95%", padding: "10px", fontSize: "16px" }}
           >
             <option value="admin">Admin</option>
-            <option value="patient">Patient</option>
+            {/* <option value="patient">Patient</option> */}
             <option value="staff">Staff</option>
             <option value="doctor">Doctor</option>
           </select>
