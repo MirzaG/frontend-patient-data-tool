@@ -2,7 +2,7 @@ FROM node:16.15.1 as build
 WORKDIR /frontend-patient-data-tool
 
 COPY package*.json .
-RUN npm install
+RUN npm install -f
 COPY . .
 
 RUN npm run build
