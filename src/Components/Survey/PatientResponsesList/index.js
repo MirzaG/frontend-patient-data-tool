@@ -65,12 +65,7 @@ const PatientResponsesList = ({ useLoggedInUser = false }) => {
       <h2>
         <u>
           Patient Responses
-          {responses[0]?.User.id && (
-            <>
-              ({responses[0]?.User.firstName} {responses[0]?.User.lastName}) [
-              {responses[0]?.createdAt}]
-            </>
-          )}
+          {responses[0]?.contactId && <>[{responses[0]?.contactId}]</>}
         </u>
       </h2>
       {
@@ -81,8 +76,8 @@ const PatientResponsesList = ({ useLoggedInUser = false }) => {
           {responses.map((response) => (
             <li key={response.id} className="Question">
               <p>
-                {response.Question.text} [{response.Question.type.toUpperCase()}
-                ]
+                {response.Question.text} [
+                {response.Question.Template.Name.toUpperCase()}]
               </p>
               {response.Question.type === "mcq" &&
                 response.Question.options && (

@@ -2,7 +2,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 
 const BASE_URL = "https://backend-patient-data-tool-lx2eaom2iq-uc.a.run.app";
-//const BASE_URL = "http://localhost:8081"; //<<<<<<< DONT PUSH <<<<<<<<<<<<<<<<
+// const BASE_URL = "http://localhost:8081"; //<<<<<<< DONT PUSH <<<<<<<<<<<<<<<<
 
 const API_BASE_URL = BASE_URL + "/api";
 
@@ -79,6 +79,24 @@ export const addNewTemplate = async (formData) => {
   }
 };
 
+export const sendTemplateToPatient = async (formData) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/template/patient`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error in sending the template:", error);
+    throw new Error("Failed to send the template");
+  }
+};
+
 export const updateQuestion = async (formData) => {
   try {
     const response = await axios.put(`${API_BASE_URL}/questions`, formData, {
@@ -139,7 +157,7 @@ export const getSurveyResponses = async (userId) => {
   }
 };
 
-export const getSurveyResponseUsers = async (userId) => {
+export const getSurveyResponseUsers = async () => {
   try {
     const response = await axios.get(
       `${API_BASE_URL}/patient/responses/summary`

@@ -15,6 +15,8 @@ import DashboardMainView from "./Components/Dashboard/DashboardMainView";
 import PatientPage from "./Components/Patient";
 import UserProfile from "./Components/Patient/profile";
 import TemplatesList from "./Components/Admin/TemplatesList";
+import DoctorDashboard from "./Components/Doctor/DashboardMainView";
+import SendTemplates from "./Components/Doctor/SendTemplates";
 
 const App = () => {
   return (
@@ -34,8 +36,12 @@ const App = () => {
           element={<QuestionsList />}
         />
         <Route path="/thanks" element={<Thanks />} />
+        <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
+        <Route path="/send-template" element={<SendTemplates />} />
+        {/* Users who repsonded list */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/main" element={<DashboardMainView />} />
+
         <Route path="/patient" element={<PatientPage />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route

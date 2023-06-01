@@ -36,30 +36,22 @@ const Dashboard = () => {
           <thead>
             <tr>
               <td>
-                <b>Id</b>
+                <b>Contact No.</b>
               </td>
               <td>
                 <b>Name</b>
               </td>
-              <td>
-                <b>Email</b>
-              </td>
-              <td>
-                <b>Phone</b>
-              </td>
             </tr>
           </thead>
           <tbody>
-            {responseUsers?.map(({ User }) => (
+            {responseUsers?.map(({ contactId }) => (
               <tr>
-                <td>{User.id}</td>
                 <td>
-                  <NavLink to={`/patient/${User.id}/responses`}>
-                    {User.firstName} {User.lastName}
+                  <NavLink to={`/patient/${contactId}/responses`}>
+                    {contactId}
                   </NavLink>
                 </td>
-                <td>{User.email}</td>
-                <td>{User.phone ? User.phone : "N/A"}</td>
+                <td>N/A</td>
               </tr>
             ))}
           </tbody>

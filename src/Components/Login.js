@@ -17,9 +17,9 @@ const LoginPage = () => {
       } else if (user?.role === "admin") {
         navigate("/main");
       } else if (user?.role === "staff") {
-        navigate("/dashboard");
+        navigate("/doctor/dashboard");
       } else if (user?.role === "doctor") {
-        navigate("/dashboard");
+        navigate("/doctor/dashboard");
       }
     } else {
       navigate("/login");
@@ -54,9 +54,9 @@ const LoginPage = () => {
         } else if (response.data.user.role === "admin") {
           navigate("/main");
         } else if (response.data.user.role === "staff") {
-          navigate("/dashboard");
+          navigate("/doctor/dashboard");
         } else if (response.data.user.role === "doctor") {
-          navigate("/dashboard");
+          navigate("/doctor/dashboard");
         }
       } else {
         alert("Login Failed." + response.errorMessage);
