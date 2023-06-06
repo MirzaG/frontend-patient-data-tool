@@ -7,7 +7,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("patient");
+  const [role, setRole] = useState("admin");
 
   useEffect(() => {
     const user = getUserDetails();
